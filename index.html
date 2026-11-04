@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="FeeWise - A school payment breakdown calculator and student expense tracker."
+    >
+
+    <title>FeeWise | School Payment Breakdown Calculator</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================================
+         MOBILE SIDEBAR OVERLAY
+    ========================================== -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+        hidden
+    ></div>
+
+
+    <!-- ==========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                💳
+            </div>
+
+            <div class="brand-details">
+
+                <h2>FeeWise</h2>
+
+                <p>Calculate. Plan. Pay Smarter.</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+            <button
+                type="button"
+                class="nav-item active"
+                data-page="dashboard"
+            >
+                <span>🏠</span>
+                Dashboard
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-page="calculator"
+            >
+                <span>🧮</span>
+                Fee Calculator
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-page="payments"
+            >
+                <span>💰</span>
+                Payment Tracker
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-page="planner"
+            >
+                <span>📅</span>
+                Instalment Planner
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-page="summary"
+            >
+                <span>📊</span>
+                Payment Summary
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-page="profile"
+            >
+                <span>👤</span>
+                Student Profile
+            </button>
+
+        </nav>
+
+
+        <!-- SIDEBAR FOOTER -->
+
+        <div class="sidebar-footer">
+
+            <button
+                type="button"
+                class="theme-toggle"
+                id="themeToggle"
+            >
+                🌙 Dark Mode
+            </button>
+
+            <div class="developer-card">
+
+                <small>DEVELOPED BY</small>
+
+                <strong>Muktar Mubarak Yusuf</strong>
+
+                <span>2025/HND/SWD/103</span>
+
+                <span>SWD 417 Mini Project</span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <button
+                    type="button"
+                    id="menuToggle"
+                    class="mobile-menu-btn"
+                    aria-label="Open navigation"
+                    aria-controls="sidebar"
+                    aria-expanded="false"
+                >
+                    ☰
+                </button>
+
+                <div>
+
+                    <h1 id="pageTitle">
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Manage and understand your school expenses.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <span class="project-badge">
+                    SWD 417 Project
+                </span>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-open="calculator"
+                >
+                    + Add School Fee
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ======================================
+             DASHBOARD SECTION
+        ====================================== -->
+
+        <section
+            class="page-section"
+            id="dashboardSection"
+        >
+
+            <!-- WELCOME BANNER -->
+
+            <div class="welcome-banner">
+
+                <div class="welcome-content">
+
+                    <span class="eyebrow">
+                        WELCOME TO FEEWISE
+                    </span>
+
+                    <h2>
+                        Take Control of Your
+                        School Expenses.
+                    </h2>
+
+                    <p>
+                        Calculate school fees, track payments,
+                        plan instalments, and understand
+                        exactly how much you need to pay.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="btn btn-white"
+                        data-open="calculator"
+                    >
+                        Calculate My Fees →
+                    </button>
+
+                </div>
+
+                <div class="welcome-graphic">
+                    💰
+                </div>
+
+            </div>
+
+
+            <!-- DASHBOARD STATISTICS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon teal">
+                        🧾
+                    </div>
+
+                    <div class="stat-details">
+
+                        <p>Total School Fees</p>
+
+                        <h3 id="dashboardTotal">
+                            ₦0.00
+                        </h3>
+
+                        <small>Overall expenses</small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✅
+                    </div>
+
+                    <div class="stat-details">
+
+                        <p>Amount Paid</p>
+
+                        <h3 id="dashboardPaid">
+                            ₦0.00
+                        </h3>
+
+                        <small>Payments recorded</small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon amber">
+                        💸
+                    </div>
+
+                    <div class="stat-details">
+
+                        <p>Outstanding Balance</p>
+
+                        <h3 id="dashboardBalance">
+                            ₦0.00
+                        </h3>
+
+                        <small>Remaining payments</small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        📈
+                    </div>
+
+                    <div class="stat-details">
+
+                        <p>Payment Progress</p>
+
+                        <h3 id="dashboardProgress">
+                            0%
+                        </h3>
+
+                        <small>Overall completion</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT PROGRESS -->
+
+            <div class="dashboard-grid">
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>Payment Progress</h3>
+
+                            <p>
+                                Your school payment completion.
+                            </p>
+
+                        </div>
+
+                        <span class="card-icon">
+                            📈
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-details">
+
+                        <strong id="progressPercentage">
+                            0%
+                        </strong>
+
+                        <span>Completed</span>
+
+                    </div>
+
+
+                    <div
+                        class="progress-track"
+                        role="progressbar"
+                        aria-label="Overall payment progress"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="0"
+                        id="paymentProgressTrack"
+                    >
+
+                        <div
+                            class="progress-fill"
+                            id="paymentProgressBar"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="progress-footer">
+
+                        <span id="progressPaid">
+                            Paid: ₦0.00
+                        </span>
+
+                        <span id="progressRemaining">
+                            Remaining: ₦0.00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>Quick Actions</h3>
+
+                            <p>
+                                Manage your school expenses.
+                            </p>
+
+                        </div>
+
+                        <span class="card-icon">
+                            ⚡
+                        </span>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+                        <button
+                            type="button"
+                            data-open="calculator"
+                            class="quick-action"
+                        >
+                            <span>➕</span>
+                            Add Fee Category
+                        </button>
+
+                        <button
+                            type="button"
+                            data-open="payments"
+                            class="quick-action"
+                        >
+                            <span>💳</span>
+                            Record Payment
+                        </button>
+
+                        <button
+                            type="button"
+                            data-open="planner"
+                            class="quick-action"
+                        >
+                            <span>📅</span>
+                            Plan Instalments
+                        </button>
+
+                        <button
+                            type="button"
+                            data-open="summary"
+                            class="quick-action"
+                        >
+                            <span>📊</span>
+                            View Breakdown
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT FEE BREAKDOWN -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>School Fee Breakdown</h2>
+
+                    <p>
+                        Overview of your recorded school expenses.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    data-open="calculator"
+                >
+                    Manage Fees →
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Fee Category</th>
+
+                            <th>Total Amount</th>
+
+                            <th>Amount Paid</th>
+
+                            <th>Balance</th>
+
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="dashboardFeeTable">
+
+                        <tr>
+
+                            <td colspan="5" class="empty-cell">
+                                No school fees added yet.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             FEE CALCULATOR SECTION
+        ====================================== -->
+
+        <section
+            class="page-section"
+            id="calculatorSection"
+            hidden
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>School Fee Calculator</h2>
+
+                    <p>
+                        Add individual school expenses
+                        and calculate your total fees.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-layout">
+
+                <!-- ADD FEE FORM -->
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>Add School Fee</h3>
+
+                            <p>
+                                Enter the fee information below.
+                            </p>
+
+                        </div>
+
+                        <span class="card-icon">
+                            🧮
+                        </span>
+
+                    </div>
+
+
+                    <form id="feeForm">
+
+                        <div class="form-group">
+
+                            <label for="feeCategory">
+                                Fee Category
+                            </label>
+
+                            <select
+                                id="feeCategory"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Fee Category
+                                </option>
+
+                                <option value="School Fees">
+                                    School Fees
+                                </option>
+
+                                <option value="Acceptance Fee">
+                                    Acceptance Fee
+                                </option>
+
+                                <option value="Departmental Dues">
+                                    Departmental Dues
+                                </option>
+
+                                <option value="Faculty Dues">
+                                    Faculty Dues
+                                </option>
+
+                                <option value="Accommodation">
+                                    Accommodation
+                                </option>
+
+                                <option value="Library Fee">
+                                    Library Fee
+                                </option>
+
+                                <option value="Medical Fee">
+                                    Medical Fee
+                                </option>
+
+                                <option value="ICT Fee">
+                                    ICT Fee
+                                </option>
+
+                                <option value="Examination Fee">
+                                    Examination Fee
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div
+                            class="form-group"
+                            id="customFeeGroup"
+                            hidden
+                        >
+
+                            <label for="customFeeName">
+                                Custom Fee Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="customFeeName"
+                                placeholder="Enter fee name"
+                                maxlength="80"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="feeAmount">
+                                Fee Amount (₦)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="feeAmount"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="Enter amount"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="feeDescription">
+                                Description (Optional)
+                            </label>
+
+                            <textarea
+                                id="feeDescription"
+                                rows="3"
+                                maxlength="250"
+                                placeholder="Enter additional information"
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                        >
+                            + Add Fee
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- CALCULATION SUMMARY -->
+
+                <div class="card calculator-summary">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>Calculation Summary</h3>
+
+                            <p>
+                                Automatically updated totals.
+                            </p>
+
+                        </div>
+
+                        <span class="card-icon">
+                            📊
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Total Fee Categories</span>
+
+                        <strong id="feeCategoryCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Total School Fees</span>
+
+                        <strong id="calculatorTotal">
+                            ₦0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Amount Paid</span>
+
+                        <strong id="calculatorPaid">
+                            ₦0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Outstanding Balance</span>
+
+                        <strong id="calculatorBalance">
+                            ₦0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-highlight">
+
+                        <p>Total Estimated School Expenses</p>
+
+                        <h2 id="estimatedTotal">
+                            ₦0.00
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FEE LIST -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Added School Fees</h2>
+
+                    <p>
+                        Manage your school payment categories.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Fee Category</th>
+
+                            <th>Description</th>
+
+                            <th>Amount</th>
+
+                            <th>Paid</th>
+
+                            <th>Balance</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="feeTableBody">
+
+                        <tr>
+
+                            <td colspan="6" class="empty-cell">
+                                No fee categories added.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             PAYMENT TRACKER SECTION
+        ====================================== -->
+
+        <section
+            class="page-section"
+            id="paymentsSection"
+            hidden
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Payment Tracker</h2>
+
+                    <p>
+                        Record payments and monitor
+                        outstanding school fees.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-layout">
+
+                <!-- PAYMENT FORM -->
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>Record Payment</h3>
+
+                            <p>
+                                Add a payment against an existing fee.
+                            </p>
+
+                        </div>
+
+                        <span class="card-icon">
+                            💳
+                        </span>
+
+                    </div>
+
+
+                    <form id="paymentForm">
+
+                        <div class="form-group">
+
+                            <label for="paymentFee">
+                                Select Fee
+                            </label>
+
+                            <select
+                                id="paymentFee"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Fee
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="paymentAmount">
+                                Amount Paid (₦)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="paymentAmount"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="Enter payment amount"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="paymentDate">
+                                Payment Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="paymentDate"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="paymentNote">
+                                Payment Note (Optional)
+                            </label>
+
+                            <textarea
+                                id="paymentNote"
+                                rows="3"
+                                maxlength="250"
+                                placeholder="Enter payment details"
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                        >
+                            Record Payment
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- PAYMENT SUMMARY -->
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>Payment Overview</h3>
+
+                            <p>
+                                Your current payment status.
+                            </p>
+
+                        </div>
+
+                        <span class="card-icon">
+                            💰
+                        </span>
+
+                    </div>
+
+
+                    <div class="payment-overview">
+
+                        <div class="overview-item">
+
+                            <span>Total Fees</span>
+
+                            <strong id="paymentTotalFees">
+                                ₦0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="overview-item">
+
+                            <span>Total Paid</span>
+
+                            <strong id="paymentTotalPaid">
+                                ₦0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="overview-item">
+
+                            <span>Remaining Balance</span>
+
+                            <strong id="paymentTotalBalance">
+                                ₦0.00
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT RECORDS -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Payment Records</h2>
+
+                    <p>
+                        View payments recorded in this browser.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Fee Category</th>
+
+                            <th>Amount Paid</th>
+
+                            <th>Date</th>
+
+                            <th>Note</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="paymentTableBody">
+
+                        <tr>
+
+                            <td colspan="5" class="empty-cell">
+                                No payments recorded yet.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             INSTALMENT PLANNER SECTION
+        ====================================== -->
+
+        <section
+            class="page-section"
+            id="plannerSection"
+            hidden
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Instalment Payment Planner</h2>
+
+                    <p>
+                        Estimate how to spread your outstanding
+                        school fees over several months.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-layout">
+
+                <!-- PLANNER FORM -->
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>Create Payment Plan</h3>
+
+                            <p>
+                                Calculate estimated monthly payments.
+                            </p>
+
+                        </div>
+
+                        <span class="card-icon">
+                            📅
+                        </span>
+
+                    </div>
+
+
+                    <form id="plannerForm">
+
+                        <div class="form-group">
+
+                            <label for="plannerBalance">
+                                Outstanding Balance (₦)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="plannerBalance"
+                                min="0"
+                                step="0.01"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="plannerMonths">
+                                Number of Months
+                            </label>
+
+                            <select
+                                id="plannerMonths"
+                                required
+                            >
+
+                                <option value="2">
+                                    2 Months
+                                </option>
+
+                                <option value="3">
+                                    3 Months
+                                </option>
+
+                                <option value="4">
+                                    4 Months
+                                </option>
+
+                                <option value="5">
+                                    5 Months
+                                </option>
+
+                                <option value="6">
+                                    6 Months
+                                </option>
+
+                                <option value="9">
+                                    9 Months
+                                </option>
+
+                                <option value="12">
+                                    12 Months
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="plannerStartDate">
+                                First Payment Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="plannerStartDate"
+                                required
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                        >
+                            Calculate Instalments
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- PLANNER RESULT -->
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>Instalment Summary</h3>
+
+                            <p>
+                                Your estimated payment schedule.
+                            </p>
+
+                        </div>
+
+                        <span class="card-icon">
+                            📈
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-highlight">
+
+                        <p>Estimated Monthly Payment</p>
+
+                        <h2 id="monthlyPayment">
+                            ₦0.00
+                        </h2>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Total Outstanding</span>
+
+                        <strong id="plannerTotal">
+                            ₦0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Number of Instalments</span>
+
+                        <strong id="plannerInstallments">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <p class="helper-text">
+                        This is an estimated budgeting plan.
+                        It does not confirm that your school
+                        accepts instalment payments.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- INSTALMENT SCHEDULE -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Payment Schedule</h2>
+
+                    <p>
+                        Estimated payment amounts and dates.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Instalment</th>
+
+                            <th>Due Date</th>
+
+                            <th>Amount</th>
+
+                            <th>Remaining Balance</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="plannerTableBody">
+
+                        <tr>
+
+                            <td colspan="4" class="empty-cell">
+                                Calculate a plan to view your schedule.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             PAYMENT SUMMARY SECTION
+        ====================================== -->
+
+        <section
+            class="page-section"
+            id="summarySection"
+            hidden
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>School Payment Summary</h2>
+
+                    <p>
+                        View and print your school expense breakdown.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="printSummaryBtn"
+                >
+                    🖨️ Print Summary
+                </button>
+
+            </div>
+
+
+            <div class="summary-report" id="printableSummary">
+
+                <div class="report-header">
+
+                    <div>
+
+                        <h2>FeeWise</h2>
+
+                        <p>
+                            School Payment Breakdown Report
+                        </p>
+
+                    </div>
+
+                    <span class="report-badge">
+                        EXPENSE SUMMARY
+                    </span>
+
+                </div>
+
+
+                <!-- STUDENT DETAILS -->
+
+                <div class="report-student-info">
+
+                    <div>
+
+                        <span>Student Name</span>
+
+                        <strong id="reportStudentName">
+                            Not Provided
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Institution</span>
+
+                        <strong id="reportInstitution">
+                            Not Provided
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Department</span>
+
+                        <strong id="reportDepartment">
+                            Not Provided
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Academic Level</span>
+
+                        <strong id="reportLevel">
+                            Not Provided
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REPORT TOTALS -->
+
+                <div class="report-totals">
+
+                    <div>
+
+                        <span>Total Fees</span>
+
+                        <strong id="reportTotal">
+                            ₦0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Amount Paid</span>
+
+                        <strong id="reportPaid">
+                            ₦0.00
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>Outstanding</span>
+
+                        <strong id="reportBalance">
+                            ₦0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BREAKDOWN TABLE -->
+
+                <h3 class="report-subtitle">
+                    Detailed Fee Breakdown
+                </h3>
+
+
+                <div class="table-wrapper">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Fee Category</th>
+
+                                <th>Total Amount</th>
+
+                                <th>Amount Paid</th>
+
+                                <th>Balance</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="reportTableBody">
+
+                            <tr>
+
+                                <td colspan="4" class="empty-cell">
+                                    No school fees recorded.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- EXPENSE CHART -->
+
+                <div class="chart-section">
+
+                    <h3>
+                        Expense Distribution
+                    </h3>
+
+                    <p>
+                        Visual breakdown of school fee categories.
+                    </p>
+
+                    <div id="expenseChart">
+
+                        <div class="empty-chart">
+                            Add school fees to view the chart.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="report-footer">
+
+                    <p>
+                        Generated using FeeWise —
+                        School Payment Breakdown Calculator.
+                    </p>
+
+                    <p>
+                        This is a personal expense summary,
+                        not an official school receipt
+                        or proof of payment.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             STUDENT PROFILE SECTION
+        ====================================== -->
+
+        <section
+            class="page-section"
+            id="profileSection"
+            hidden
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Student Profile</h2>
+
+                    <p>
+                        Save your information for
+                        payment summary reports.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-container">
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <h3>Student Information</h3>
+
+                            <p>
+                                Enter your academic details.
+                            </p>
+
+                        </div>
+
+                        <span class="card-icon">
+                            👤
+                        </span>
+
+                    </div>
+
+
+                    <form id="profileForm">
+
+                        <div class="form-group">
+
+                            <label for="studentName">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="studentName"
+                                maxlength="100"
+                                placeholder="Enter student full name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="studentMatric">
+                                Matric Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="studentMatric"
+                                maxlength="50"
+                                placeholder="Enter matric number"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="studentInstitution">
+                                Institution
+                            </label>
+
+                            <input
+                                type="text"
+                                id="studentInstitution"
+                                maxlength="120"
+                                placeholder="Enter institution name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="studentDepartment">
+                                Department
+                            </label>
+
+                            <input
+                                type="text"
+                                id="studentDepartment"
+                                maxlength="100"
+                                placeholder="Enter department"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="studentLevel">
+                                Academic Level
+                            </label>
+
+                            <select
+                                id="studentLevel"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Level
+                                </option>
+
+                                <option value="ND 1">
+                                    ND 1
+                                </option>
+
+                                <option value="ND 2">
+                                    ND 2
+                                </option>
+
+                                <option value="HND 1">
+                                    HND 1
+                                </option>
+
+                                <option value="HND 2">
+                                    HND 2
+                                </option>
+
+                                <option value="100 Level">
+                                    100 Level
+                                </option>
+
+                                <option value="200 Level">
+                                    200 Level
+                                </option>
+
+                                <option value="300 Level">
+                                    300 Level
+                                </option>
+
+                                <option value="400 Level">
+                                    400 Level
+                                </option>
+
+                                <option value="500 Level">
+                                    500 Level
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="academicSession">
+                                Academic Session
+                            </label>
+
+                            <input
+                                type="text"
+                                id="academicSession"
+                                maxlength="20"
+                                placeholder="e.g. 2025/2026"
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                        >
+                            Save Student Information
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             FOOTER
+        ====================================== -->
+
+        <footer class="footer">
+
+            <p>
+                © 2026 FeeWise. All Rights Reserved.
+            </p>
+
+            <p>
+                Developed by
+                <strong>Muktar Mubarak Yusuf</strong>
+                | 2025/HND/SWD/103
+                | SWD 417
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- ==========================================
+         TOAST NOTIFICATION
+    ========================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
